@@ -9,10 +9,6 @@ const routes = [
     name: 'login',
     component: () => import('@/views/login')
   },
-  // {
-  //   path: '/',
-  //   redirect: '/login',
-  // }
   {
     path: '/',
     redirect: '/home',
@@ -24,9 +20,9 @@ const routes = [
         component: () => import('@/views/home')
       },
       {
-        path: '/a',
-        name: 'a',
-        component: () => import('@/views/a')
+        path: '/visualization',
+        name: 'visualization',
+        component: () => import('@/views/visualization')
       },
       {
         path: '/b',

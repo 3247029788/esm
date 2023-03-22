@@ -1,7 +1,5 @@
 <template>
   <div id="app">
-    <!-- <van-button type="info">按钮</van-button>
-    <div class="container"></div> -->
     <router-view/>
   </div>
 </template>
