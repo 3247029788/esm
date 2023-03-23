@@ -16,14 +16,20 @@
         <p>{{ Ncovinfo.mark3 }}</p>
       </div>
     </div>
+    <!-- <p>截止2022-12-28 00:00 全国数据统计</p> -->
+    <Ncovdata/>
   </div>
 </template>
 
 <script>
 import { getNcovinfo } from '@/api/test'
+import Ncovdata from './ncovdata.vue'
 
 export default {
   name: 'Visualization',
+  components:{
+    Ncovdata
+  },
   data () {
     return {
       Ncovinfo: {}
