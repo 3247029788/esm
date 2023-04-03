@@ -14,12 +14,11 @@ class HttpRequst {
     const config = {
       baseURL: this.baseUrl,
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+        'Content-Type': 'application/json'
       }
     }
     return config
   }
-
   interceptors (instance) {
     instance.interceptors.request.use(function (config) {
       // 在发送请求之前做些什么

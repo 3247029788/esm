@@ -30,12 +30,32 @@ const routes = [
         component: () => import('@/views/b')
       },
       {
-        path: '/c',
-        name: 'c',
-        component: () => import('@/views/c')
+        path: '/center',
+        name: 'center',
+        component: () => import('@/views/center')
       }
     ]
-  }
+  },
+  {
+    path: '/temperatureRegistration',
+    name: 'temperatureRegistration',
+    component: () => import('@/views/home/TemperatureRegistration.vue'),
+  },
+  {
+    name: 'abnormalReport',
+    path: '/abnormalReport',
+    component: () => import('@/views/home/AbnormalReport'),
+  },
+  {
+    name: 'healthCode',
+    path: '/healthCode',
+    component: () => import('@/views/home/HealthCode'),
+  },
+  {
+    name: 'userInfo',
+    path: '/userInfo',
+    component: () => import('@/views/center/userInfo'),
+  },
 ]
 
 const router = new VueRouter({

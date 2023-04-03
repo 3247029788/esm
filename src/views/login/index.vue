@@ -102,8 +102,10 @@ export default {
 
       const res = await login({ username: this.username, password: this.password })
       if (res.status === 0) {
-        this.$toast.success({ message: '登录成功' })
+        this.$toast.success({ message: '登录成功！' })
         this.$store.commit('userToken/setToken', res.token)
+        this.$store.commit('userToken/setExpiresTime', res.expiresTime)
+        window.localStorage.setItem('tokenStartTime',new Date().getTime())
         this.$router.push({ path: '/home' })
       } else {
         this.$toast.fail(res.message)
@@ -120,7 +122,7 @@ export default {
       })
       const res = await reguser({ username: this.username, password: this.password })
       if (res.status === 0) {
-        this.$toast.success({ message: '登录成功' })
+        this.$toast.success({ message: '注册成功！' })
         this.$store.commit('userToken/setToken', res.token)
         this.$router.push({ path: '/home' })
       } else {

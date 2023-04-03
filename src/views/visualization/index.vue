@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="sss">
     <div class="header">
     </div>
     <div class="info">
@@ -16,19 +16,21 @@
         <p>{{ Ncovinfo.mark3 }}</p>
       </div>
     </div>
-    <!-- <p>截止2022-12-28 00:00 全国数据统计</p> -->
     <Ncovdata/>
+    <Map/>
   </div>
 </template>
 
 <script>
 import { getNcovinfo } from '@/api/test'
-import Ncovdata from './ncovdata.vue'
+import Ncovdata from './Ncovdata.vue'
+import Map from './Map.vue'
 
 export default {
   name: 'Visualization',
   components:{
-    Ncovdata
+    Ncovdata,
+    Map
   },
   data () {
     return {
@@ -44,6 +46,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.sss{
+  overflow-y: auto;// 实现纵向滑动
+  padding-bottom: 60px;
+}
 .header{
   position: relative;
   width: 100%;

@@ -17,4 +17,18 @@ export const getProvinceNcov = (params) => {
       params
     })
 }
+
+// 获取地图疫情
+export const getMapdata = () => {
+    return axios.request({
+      url: 'my/getMapdata',
+      method: 'GET',
+    })
+}
   
+export const getCS = () => {
+    return axios.request({
+      url: 'my/getCS',
+      method: 'get',
+    })
+}

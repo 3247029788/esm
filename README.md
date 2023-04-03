@@ -1,9 +1,8 @@
 # esm
 
-## Project setup
-```
-npm install
-```
+## Echarts引入地图
+下载版本要低于5.x版本
+npm i --save echarts@4.x
 
 ### Compiles and hot-reloads for development
 ```

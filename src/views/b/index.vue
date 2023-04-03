@@ -1,5 +1,5 @@
 <template>
-    <h2>首页</h2>
+    <van-empty description="聊天" />
 </template>
 
 <script>

@@ -1,6 +1,6 @@
 <template>
     <div class="outer">
-        <van-tabs class="tabs"  v-model="active" type="card" background="#F1F1F1" color="white" title-active-color="#333" title-inactive-color="#333">
+        <van-tabs class="tabs"  v-model="active" color="red" animated>
             <van-tab title="全国疫情数据(含港澳台)" name="a">
                 <van-grid :column-num="2" style="padding:0;">
                     <van-grid-item style="text-align: center;padding:0;">
@@ -82,8 +82,8 @@
                     {{provinceNcov.province}}
                     <van-icon name="arrow-down" />
                 </van-button>
-                <van-popup v-model="show" position="bottom" :style="{ height: '30%' }">
-                    <van-area title="请选择地区" :area-list="areaProvince" value="code" @change="change" @cancel="cancel" @confirm="confirm"/>
+                <van-popup v-model="show" position="bottom" :style="{ height: '50%' }" get-container="body">
+                    <van-area title="请选择地区" :area-list="areaProvince" value="code" @cancel="cancel" @confirm="confirm"/>
                 </van-popup>
             </van-tab>
         </van-tabs>
@@ -123,15 +123,12 @@ export default {
             })
             this.show = false;
         },
-        change(val){
-            console.log(val)
-        },
         showPopup(){
             this.show = true;
         },
         cancel(){
             this.show = false;
-        }
+        },
     }
 }
 </script>
@@ -141,10 +138,13 @@ export default {
     width: 90%;
     margin:0 5%;
 }
+/deep/ .van-tab{
+    width: 100%;
+}
 .tabs{
     // border: 1px solid black;
     box-shadow: 0 0 10px rgba(11, 1, 1, 0.4);
-    border-radius: 4px;  
+    border-radius: 10px;  
     padding-bottom: 5px;
 }
 .cover_today_confirm{
