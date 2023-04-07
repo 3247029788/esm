@@ -2,15 +2,15 @@
   <div style="width: 100%">
     <NavTopBar title="信息修改" :leftArrow="true" :rightArrow="true" />
     <van-form @submit="onSubmit">
-      <van-field name="uploader" label="文件上传">
+      <van-field name="uploader" label="头像上传">
         <template #input>
-          <van-uploader multiple :max-count="1" v-model="uploader" :max-size="500 * 1024" @oversize="onOversize" :after-read="afterRead" />
+          <van-uploader multiple :max-count="1" v-model="uploader" :max-size="500 * 512" @oversize="onOversize" :after-read="afterRead" />
         </template>
       </van-field>
-      <van-field name="登录名" label="登录名" placeholder="请输入登录名" readonly v-model="userInfo.loginName" :rules="[
+      <van-field name="登录名" label="登录名" placeholder="请输入登录名" readonly v-model="userInfo.username" :rules="[
           {
             pattern: uPattern,
-            message: '登录名格式错误：4到8位（字母，数字，下划线，减号）！',
+            message: '登录名格式错误：4到8位（中文，字母，数字，下划线，减号）！',
           },
         ]" />
       <van-field name="昵称" label="昵称" placeholder="请输入昵称" v-model="userInfo.nickName" :rules="[
@@ -30,7 +30,7 @@
         </template>
       </van-field>
       <van-field type="email" name="电子邮箱" label="电子邮箱" placeholder="请输入电子邮箱" v-model="userInfo.email" :rules="[{ pattern: ePattern, message: '电子邮箱格式不正确' }]" />
-      <van-field type="number" name="手机号码" label="手机号码" placeholder="请输入手机号码" v-model="userInfo.mobil" :rules="[{ pattern: mPattern, message: '手机号码格式不正确' }]" />
+      <van-field type="mobile" name="手机号码" label="手机号码" placeholder="请输入手机号码" v-model="userInfo.mobile" :rules="[{ pattern: mPattern, message: '手机号码格式不正确' }]" />
       <van-field name="电话号码" label="电话号码" placeholder="请输入电话号码" v-model="userInfo.tel" :rules="[{ pattern: tPattern, message: '电话号码格式不正确' }]" />
       <div style="margin: 16px">
         <van-button round block type="info" native-type="submit">提交</van-button>
@@ -40,14 +40,8 @@
 </template>
 
 <script>
-import NavTopBar from "../../../commons/NavTopBar";
-import {
-  loginInfoReq,
-  getImageReq,
-  uploadFileReq,
-  updateUserInfoReq,
-  logoutReq,
-} from "../../../../utils/api";
+import NavTopBar from "@/components/NavTopBar"
+import { updateUserInfo,getUserinfo } from '@/api/test'
 
 export default {
   name: "UpdateUserInfo",
@@ -58,7 +52,7 @@ export default {
     return {
       uploader: [],
       userInfo: {},
-      uPattern: /^[a-zA-Z0-9_-]{4,8}$/,
+      uPattern: /^[a-zA-Z0-9_\-\u4e00-\u9fa5]{1,8}$/,
       pPattern:
         /^.*(?=.{6,8})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*? ]).*$/,
       tPattern: /^(?:(?:\d{3}-)?\d{8}|^(?:\d{4}-)?\d{7,8})(?:-\d+)?$/,
@@ -70,36 +64,31 @@ export default {
     };
   },
   created() {
-    loginInfoReq().then((res) => {
-      this.userInfo = res.data;
-      let avatar;
-      if (this.userInfo.avatar != null && this.userInfo.avatar.trim() != '') {
-        avatar = res.data.avatar;
-        getImageReq({ path: avatar }).then((r) => {
-          this.uploader.push({
-            url: window.URL.createObjectURL(r),
-            isImage: true,
-          });
-        });
-      }
+    getUserinfo().then((res) => {
+      this.userInfo = res.result;
+      // let avatar;
+      // if (this.userInfo.avatar != null && this.userInfo.avatar.trim() != '') {
+      //   avatar = res.data.avatar;
+      //   getImageReq({ path: avatar }).then((r) => {
+      //     this.uploader.push({
+      //       url: window.URL.createObjectURL(r),
+      //       isImage: true,
+      //     });
+      //   });
+      // }
     });
   },
   methods: {
     /**表单提交 */
     onSubmit() {
-      updateUserInfoReq({}, this.userInfo).then((res) => {
-        if (res.code === 200) {
+      updateUserInfo(this.userInfo).then((res) => {
+        if (res.status === 0) {
           this.$dialog.alert({
             message: "身份信息已经发生变更，请重新登录",
           }).then(() => {
-            logoutReq().then((req) => {
-              if (req.code == 200) {
-                this.$toast.success(req.message);
-                this.$router.replace({ path: "/" });
-              } else {
-                this.$toast.fail(req.message);
-              }
-            });
+              // this.$toast.success(res.message);
+              this.$store.commit('userToken/clearToken')
+              this.$router.replace({ path: "/" });
           });
         } else {
           this.$toast.fail(res.message);
@@ -113,14 +102,14 @@ export default {
     },
     /**图片上传 */
     afterRead(file) {
-      let _this = this;
-      let fromData = new FormData(); //创建form对象
-      fromData.append("file", file.file);
-      fromData.append("purpose", "avatar");
-      console.log(fromData);
-      uploadFileReq(fromData).then((res) => {
-        this.userInfo.avatar = res.data;
-      });
+      this.userInfo.avatar = file.content
+      // let fromData = new FormData(); //创建form对象
+      // fromData.append("file", file.file);
+      // fromData.append("purpose", "avatar");
+      // console.log(fromData);
+      // uploadFileReq(fromData).then((res) => {
+      //   this.userInfo.avatar = res.data;
+      // });
     },
   },
 };

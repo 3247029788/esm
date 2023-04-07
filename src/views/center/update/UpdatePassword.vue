@@ -9,9 +9,6 @@
           name="pattern"
           label="原始密码"
           placeholder="请输入原始密码"
-          :rules="[
-            { pattern, message: '请输入6~8位包含大小写字母数字特殊字符！' },
-          ]"
         />
         <!-- 通过 pattern 进行正则校验 -->
         <van-field
@@ -34,17 +31,15 @@
           :rules="[{ validator, message: '两次输入的密码不一致！' }]"
         />
         <div style="margin: 16px">
-          <van-button round block type="info" native-type="submit"
-            >提交</van-button
-          >
+          <van-button round block type="info" native-type="submit">提交</van-button>
         </div>
       </van-form>
   </div>
 </template>
 
 <script>
-import { updatePasswordReq, logoutReq } from "../../../../utils/api";
-import NavTopBar from '../../../commons/NavTopBar'
+import { updatePassword } from "@/api/test";
+import NavTopBar from "@/components/NavTopBar"
 
 export default {
   name: "UpdatePassword",
@@ -80,37 +75,28 @@ export default {
       });
     },
     onSubmit() {
-      let _this = this;
-      updatePasswordReq(
+      updatePassword(
         {
           oldPassword: this.oldPassword,
           newPassword: this.newPassword,
           repeatPassword: this.repeatPassword,
         },
-        {}
       ).then((res) => {
-        if (res.code == 200) {
+        if (res.status == 0) {
           this.$dialog
             .alert({
               message: "密码修改成功，请重新登录",
             })
             .then(() => {
-              logoutReq().then((req) => {
-                if (req.code == 200) {
-                  this.$toast.success(req.message);
-                  this.$router.replace({ path: "/" });
-                  this.removeLStore("rememberInfo")
-                } else {
-                  this.$toast.fail(req.message);
-                }
-              });
+              this.$store.commit('userToken/clearToken')
+              this.$router.replace({ path: "/" });
             });
         } else {
-          _this.$toast.fail(res.message);
+          this.$toast.fail(res.message);
         }
-        _this.oldPassword = "";
-        _this.newPassword = "";
-        _this.repeatPassword = "";
+        this.oldPassword = "";
+        this.newPassword = "";
+        this.repeatPassword = "";
       });
     },
   },

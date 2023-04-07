@@ -37,8 +37,8 @@
       <van-cell title="密码修改" is-link to="updatePassword" />
     </van-cell-group>
 
-    <van-cell-group title="社区">
-      <van-cell title="社区消息" is-link to="messageList" />
+    <van-cell-group title="校园">
+      <van-cell title="校园消息" is-link to="messageList" />
       <van-cell title="提交记录" is-link to="submitRecord" />
     </van-cell-group>
   </div>

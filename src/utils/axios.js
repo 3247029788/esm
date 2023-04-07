@@ -26,7 +26,7 @@ class HttpRequst {
       if (token) {
         config.headers.Authorization = token
       }
-      console.log('拦截处理请求')
+      // console.log('拦截处理请求')
       return config
     }, function (error) {
       // 对请求错误做些什么
@@ -34,7 +34,7 @@ class HttpRequst {
     })
 
     instance.interceptors.response.use(function (response) {
-      console.log('处理相应')
+      // console.log('处理响应')
       // 对响应数据做点什么
       return response.data
     }, function (error) {

@@ -19,12 +19,12 @@
       <van-cell title="电子邮箱" :value="userInfo.email === null ? '请完善信息' : userInfo.email" />
       <van-cell title="家庭地址" :value="userInfo.address === null ? '请完善信息' : userInfo.address" />
     </van-cell-group>
-    <van-cell-group v-if="isShow" inset title="校园信息">
-      <van-cell title="期" :value="address.periodNumber" />
-      <van-cell title="栋" :value="address.buildingNumber" />
-      <van-cell title="单元" :value="address.unitNumber" />
-      <van-cell title="层" :value="address.layerNumber" />
-      <van-cell title="户" :value="address.householdNumber" />
+    <van-cell-group inset title="校园信息">
+      <van-cell title="期" :value="userInfo.periodNumber" />
+      <van-cell title="栋" :value="userInfo.buildingNumber" />
+      <van-cell title="单元" :value="userInfo.unitNumber" />
+      <van-cell title="层" :value="userInfo.layerNumber" />
+      <van-cell title="户" :value="userInfo.householdNumber" />
     </van-cell-group>
   </div>
 </template>
@@ -37,14 +37,14 @@ export default {
   data() {
     return {
       userInfo: {},
-      isShow: false,
-      address: {
-        periodNumber: '',
-        buildingNumber: '',
-        unitNumber: '',
-        layerNumber: '',
-        householdNumber: ''
-      }
+      // isShow: false,
+      // address: {
+      //   periodNumber: '',
+      //   buildingNumber: '',
+      //   unitNumber: '',
+      //   layerNumber: '',
+      //   householdNumber: ''
+      // }
     };
   },
   components: {
@@ -53,35 +53,24 @@ export default {
   created() {
     getUserinfo().then((req) => {
       this.userInfo = req.result;
-      let avatar;
-      if (req.result.avatar != null && req.result.avatar.trim() != '') {
-        this.userinfo.avatar = req.result.avatar;
-        // getImageReq(
-        //   {
-        //     path: avatar,
-        //   },
-        //   {}
-        // ).then((r) => {
-        //   this.userInfo.avatar = window.URL.createObjectURL(r);
-        // });
-      } else {
+      if (req.result.avatar === null || req.result.avatar.trim() === '') {
         this.userInfo.avatar = "/img/default/defaultHead.png"
       }
 
     });
-    this.findInfoByUser();
+    // this.findInfoByUser();
   },
   methods: {
-    findInfoByUser() {
-      findInfoByUserReq().then(res => {
-        if (res.data == null) {
-          this.isShow = false
-        } else {
-          this.isShow = true
-          this.address = res.data
-        }
-      })
-    }
+    // findInfoByUser() {
+    //   findInfoByUserReq().then(res => {
+    //     if (res.data == null) {
+    //       this.isShow = false
+    //     } else {
+    //       this.isShow = true
+    //       this.address = res.data
+    //     }
+    //   })
+    // }
   },
 };
 </script>

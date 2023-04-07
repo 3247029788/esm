@@ -56,6 +56,51 @@ const routes = [
     path: '/userInfo',
     component: () => import('@/views/center/userInfo'),
   },
+  {
+    name: 'updateUserInfo',
+    path: '/updateUserInfo',
+    component: () => import('@/views/center/update/UpdateUserInfo'),
+  },
+  {
+    name: 'updatePassword',
+    path: '/updatePassword',
+    component: () => import('@/views/center/update/UpdatePassword'),
+  },
+  {
+    name: 'setting',
+    path: '/setting',
+    component: () => import('@/views/center/settings'),
+  },
+  {
+    name: 'inAndOut',
+    path: '/inAndOut',
+    component: () => import('@/views/home/InAndOut'),
+  },
+  {
+    name: 'returnApplication',
+    path: '/returnApplication',
+    component: () => import('@/views/home/returnApplication'),
+  },
+  {
+    name: 'manageException',
+    path: '/manageException',
+    component: () => import('@/views/home/manage'),
+  },
+  {
+    name: 'submitRecord',
+    path: '/submitRecord',
+    component: () => import('@/views/center/submitRecord'),
+  },
+  {
+    name: 'message',
+    path: '/message',
+    component: () => import('@/views/home/message'),
+  },
+  {
+    name: 'messageList',
+    path: '/messageList',
+    component: () => import('@/views/center/messageList'),
+  },
 ]
 
 const router = new VueRouter({

@@ -1,5 +1,5 @@
 <template>
-  <div class="row m-0 p-0" style="width: 100%">
+  <div style="width: 100%">
     <div class="col-12 m-0 p-0">
       <NavTopBar title="设置" :leftArrow="true" :rightArrow="true" />
     </div>
@@ -10,10 +10,10 @@
         <van-cell  value="退出登录" is-link @click="logout" />
       </van-cell-group>
     </div>
-    <div class="col-12 m-0 p-0">
+    <div>
       <van-popup class="father" v-model="show" round position="bottom" closeable :style="{ height: '30%' }" >
         <div class="row text-center">
-          <p>社区健康疫情管理系统 V1.0.0 <br/><small class="text-secondary">让社区管理更加智能高效！</small></p>
+          <p>校园疫情管理系统 V1.0.0 <br/><span class="text-secondary">让校园管理更加智能高效！</span></p>
         </div>
       </van-popup>
     </div>
@@ -21,9 +21,7 @@
 </template>
 
 <script>
-
-import {logoutReq} from '../../../../utils/api'
-import NavTopBar from '../../../commons/NavTopBar'
+import NavTopBar from "@/components/NavTopBar"
 
 export default {
   name: "Setting",
@@ -46,25 +44,28 @@ export default {
     },
     /**退出登录 */
     logout(){
-      let _this = this
-      logoutReq().then(req => {
-        if(req.code == 200){
-          _this.$toast.success(req.message)
-          _this.$router.replace({path: '/'})
-        }else{
-          _this.$toast.fail(req.message)
-        }
-      })
+      this.$store.commit('userToken/clearToken')
+      this.$router.replace({ path: "/" });
     }
   },
 };
 </script>
 
-<style>
-
+<style lang="less" scoped>
 .father{
   display: flex;
   justify-content: center;/*实现水平居中*/
   align-items:center; /*实现垂直居中*/
+  p{
+    text-align: center;
+    font-size:16px;
+    margin-bottom: 36px;
+    span{
+      display: block;
+      margin-top: 5px;
+      font-size: 12.8px;
+      color:rgb(142, 142, 147);
+    }
+  }
 }
 </style>

@@ -35,3 +35,39 @@ export const getNcovinfo = (params) => {
     params
   })
 }
+
+// 修改个人信息
+export const updateUserInfo = (data) => {
+  return axios.request({
+    url: 'my/updateUserInfo',
+    method: 'POST',
+    data
+  })
+}
+
+// 修改密码
+export const updatePassword = (data) => {
+  return axios.request({
+    url: 'my/updatePassword',
+    method: 'POST',
+    data
+  })
+}
+
+// 获取提交记录
+export const getRecord = (params) => {
+  return axios.request({
+    url: 'my/getRecord',
+    method: 'GET',
+    params
+  })
+}
+
+// 获取所有用户
+export const getAllUser = (params) => {
+  return axios.request({
+    url: 'my/getAllUser',
+    method: 'GET',
+    params
+  })
+}

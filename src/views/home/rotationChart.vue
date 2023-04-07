@@ -41,7 +41,6 @@ export default {
             getHomeList().then(res => {
                 if (res.status === 0) {
                     this.list = res.result
-                    console.log(this.list)
                 } else {
                     this.$toast("加载菜单异常")
                 }

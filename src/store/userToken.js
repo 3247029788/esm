@@ -17,8 +17,9 @@ const userToken = {
       state.expiresTime = data
       setItem('expiresTime', state.expiresTime)
     },
-    clearToken () {
+    clearToken (state) {
       removeItem('token')
+      state.token = ''
     },
     getToken (state) {
       state.token = state.token || getItem('token')
