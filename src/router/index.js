@@ -101,6 +101,16 @@ const routes = [
     path: '/messageList',
     component: () => import('@/views/center/messageList'),
   },
+  {
+    name: 'userManagement',
+    path: '/userManagement',
+    component: () => import('@/views/home/userManage'),
+  },
+  {
+    name: 'approve',
+    path: '/approve',
+    component: () => import('@/views/home/approve'),
+  },
 ]
 
 const router = new VueRouter({

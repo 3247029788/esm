@@ -14,7 +14,6 @@
 
 <script>
 import RotattionChart from './rotationChart.vue'
-import { getUserinfo, getNcov } from '@/api/test'
 
 export default {
   name: 'Home',

@@ -26,6 +26,14 @@ export const getCardDays = () => {
   })
 }
 
+// 获取打卡信息
+export const getCardMsg = () => {
+  return axios.request({
+    url: 'my/getCardMsg',
+    method: 'GET',
+  })
+}
+
 // 异常上报
 export const abnormalReport = (data) => {
   return axios.request({
@@ -111,6 +119,24 @@ export const getMessage = (params) => {
 export const updateRead = (data) => {
   return axios.request({
     url: 'my/updateRead',
+    method: 'POST',
+    data
+  })
+}
+
+// 提交离校审批结果
+export const postLeaveResult = (data) => {
+  return axios.request({
+    url: 'my/postLeaveResult',
+    method: 'POST',
+    data
+  })
+}
+
+// 提交返校审批结果
+export const postReturnResult = (data) => {
+  return axios.request({
+    url: 'my/postReturnResult',
     method: 'POST',
     data
   })

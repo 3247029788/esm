@@ -71,3 +71,39 @@ export const getAllUser = (params) => {
     params
   })
 }
+
+// 获取所有用户信息
+export const getAllUserInfo = (params) => {
+  return axios.request({
+    url: 'my/getAllUserInfo',
+    method: 'GET',
+    params
+  })
+}
+
+// 获取所有用户信息
+export const updateVIPUserInfo = (data) => {
+  return axios.request({
+    url: 'my/updateVIPUserInfo',
+    method: 'POST',
+    data
+  })
+}
+
+// 获取所有用户信息
+export const getLeaveInfo = (params) => {
+  return axios.request({
+    url: 'my/getLeaveInfo',
+    method: 'GET',
+    params
+  })
+}
+
+// 获取所有用户信息
+export const getReturnInfo = (params) => {
+  return axios.request({
+    url: 'my/getReturnInfo',
+    method: 'GET',
+    params
+  })
+}

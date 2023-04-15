@@ -32,6 +32,7 @@
       <van-field type="email" name="电子邮箱" label="电子邮箱" placeholder="请输入电子邮箱" v-model="userInfo.email" :rules="[{ pattern: ePattern, message: '电子邮箱格式不正确' }]" />
       <van-field type="mobile" name="手机号码" label="手机号码" placeholder="请输入手机号码" v-model="userInfo.mobile" :rules="[{ pattern: mPattern, message: '手机号码格式不正确' }]" />
       <van-field name="电话号码" label="电话号码" placeholder="请输入电话号码" v-model="userInfo.tel" :rules="[{ pattern: tPattern, message: '电话号码格式不正确' }]" />
+      <van-field name="家庭地址" label="家庭地址" placeholder="请输入家庭地址" v-model="userInfo.address" :rules="[{ required:true, message: '请输入家庭地址' }]" />
       <div style="margin: 16px">
         <van-button round block type="info" native-type="submit">提交</van-button>
       </div>
@@ -84,12 +85,8 @@ export default {
       updateUserInfo(this.userInfo).then((res) => {
         if (res.status === 0) {
           this.$dialog.alert({
-            message: "身份信息已经发生变更，请重新登录",
-          }).then(() => {
-              // this.$toast.success(res.message);
-              this.$store.commit('userToken/clearToken')
-              this.$router.replace({ path: "/" });
-          });
+            message: "身份信息变更成功",
+          })
         } else {
           this.$toast.fail(res.message);
         }

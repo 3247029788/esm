@@ -1,7 +1,7 @@
 <template>
   <div class="all">
     <div class="outer">
-      <span class="welcome_word">欢迎来到校园疫情管理系统</span>
+      <span class="welcome_word">校园疫情管理系统</span>
       <div class="login_bar">
         <van-tabs v-model="activeName">
           <van-tab title="登录" name="a">
@@ -123,8 +123,8 @@ export default {
       const res = await reguser({ username: this.username, password: this.password })
       if (res.status === 0) {
         this.$toast.success({ message: '注册成功！' })
-        this.$store.commit('userToken/setToken', res.token)
-        this.$router.push({ path: '/home' })
+        // this.$store.commit('userToken/setToken', res.token)
+        // this.$router.push({ path: '/home' })
       } else {
         this.$toast.fail(res.message)
       }
@@ -137,8 +137,10 @@ export default {
 .all{
   width: 100%;
   height: 100vh;
-  background: url('../../assets/beijing.jpg');
-	background-size: 100% 100%;
+  // background: url('../../assets/beijing.jpg');
+  // background: linear-gradient(to top right, rgb(254, 170, 255), #F6D365, #ffb5a5);
+  background: linear-gradient(to right, rgb(239, 247, 139),#99f9b4);
+	// background-size: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -151,7 +153,8 @@ export default {
   flex-wrap: wrap;
   .welcome_word{
     font-weight: bold;
-    font-size: 20px;
+    font-size: 28px;
+    font-family: "Microsoft YaHei", sans-serif;
   }
 }
 .login_bar{
@@ -159,7 +162,7 @@ export default {
   // margin-top: 150px;
   width: 90%;
   // height: 200px;
-  background-color: skyblue;
+  background-color: #9999994a;
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
   border-radius: 4px;
   display: flex;

@@ -8,7 +8,7 @@
                 <img src="../../assets/tp1.png" />
             </van-swipe-item>
         </van-swipe>
-        <van-notice-bar left-icon="volume-o" :scrollable="false">
+        <van-notice-bar left-icon="volume-o" :scrollable="true">
             <van-swipe vertical class="notice-swipe" :autoplay="3500" :show-indicators="false">
                 <van-swipe-item v-for="(value, index) in notices" :key="index">{{value}}</van-swipe-item>
             </van-swipe>
@@ -28,7 +28,7 @@ export default {
         return {
             searchvalue: "",
             list: [],
-            notices: [],
+            notices: ['欢迎来到校园疫情管理系统'],
             messageQuery: {
             }
         }

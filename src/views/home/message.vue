@@ -70,11 +70,6 @@ export default {
       result: []
     }
   },
-  watch:{
-    result(newV,old){
-      console.log(newV)
-    }
-  },
   methods: {
     submit(){
       const data = {
@@ -82,7 +77,9 @@ export default {
         theme: this.theme,
         text: this.text
       }
-      postMessage(data)
+      postMessage(data).then(res => {
+        if(res.status === 0) this.$toast.success('发送成功！')
+      })
     },
     search(){
       if(this.keyword !== ''){

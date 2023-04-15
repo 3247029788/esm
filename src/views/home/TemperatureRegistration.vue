@@ -59,7 +59,7 @@
 import dayjs from 'dayjs'
 import NavTopBar from "@/components/NavTopBar";
 import { areaList } from '@vant/area-data';
-import { postClockin,getCardDays } from "@/api/home"
+import { postClockin,getCardDays,getCardMsg } from "@/api/home"
 export default {
   name: "TemperatureRegistration",
   components: {
@@ -98,6 +98,10 @@ export default {
         trigger: 'change' 
       }
     ];
+    // 自动获取上一次打卡的信息
+    getCardMsg().then(res => {
+      this.clockin = {...this.clockin ,...res.result}
+    })
   },
   computed: {
     isChecked() {
