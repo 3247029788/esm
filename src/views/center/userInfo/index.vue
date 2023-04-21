@@ -1,30 +1,30 @@
 <template>
   <div style="width: 100%" class="outer">
     <div>
-      <NavTopBar title="个人详情" :leftArrow="true" :rightArrow="true" />
+      <NavTopBar :title="$t('center.个人详情')" :leftArrow="true" :rightArrow="true" />
     </div>
-    <van-cell-group inset title="基础信息">
-      <van-cell title="头像">
+    <van-cell-group inset :title="$t('center.基础信息')">
+      <van-cell :title="$t('center.头像')">
         <van-image scale-down width="100" height="100" :src="userInfo.avatar" />
       </van-cell>
-      <van-cell title="身份" :value="userInfo.identity" />
-      <van-cell title="登录名" :value="userInfo.username" />
-      <van-cell title="真实姓名" :value="userInfo.realName === null ? '请完善信息' : userInfo.realName" />
-      <van-cell title="昵称" :value="userInfo.nickName === null ? '请完善信息' : userInfo.nickName" />
-      <van-cell title="性别" :value="userInfo.sex == 1 ? '男':'女'" />
+      <van-cell :title="$t('center.身份')" :value="userInfo.identity" />
+      <van-cell :title="$t('center.登录名')" :value="userInfo.username" />
+      <van-cell :title="$t('center.真实姓名')" :value="userInfo.realName === null ? $t('center.请完善信息') : userInfo.realName" />
+      <van-cell :title="$t('center.昵称')" :value="userInfo.nickName === null ? $t('center.请完善信息') : userInfo.nickName" />
+      <van-cell :title="$t('center.性别')" :value="userInfo.sex == 1 ? $t('center.男') : $t('center.女')" />
     </van-cell-group>
-    <van-cell-group inset title="隐私信息">
-      <van-cell title="手机号码" :value="userInfo.mobile === null ? '请完善信息' : userInfo.mobile" />
-      <van-cell title="固定电话" :value="userInfo.tel === null ? '请完善信息' : userInfo.tel" />
-      <van-cell title="电子邮箱" :value="userInfo.email === null ? '请完善信息' : userInfo.email" />
-      <van-cell title="家庭地址" :value="userInfo.address === null ? '请完善信息' : userInfo.address" />
+    <van-cell-group inset :title="$t('center.隐私信息')">
+      <van-cell :title="$t('center.手机号码')" :value="userInfo.mobile === null ? $t('center.请完善信息') : userInfo.mobile" />
+      <van-cell :title="$t('center.固定电话')" :value="userInfo.tel === null ? $t('center.请完善信息') : userInfo.tel" />
+      <van-cell :title="$t('center.电子邮箱')" :value="userInfo.email === null ? $t('center.请完善信息') : userInfo.email" />
+      <van-cell :title="$t('center.家庭地址')" :value="userInfo.address === null ? $t('center.请完善信息') : userInfo.address" />
     </van-cell-group>
-    <van-cell-group inset title="校园信息">
-      <van-cell title="期" :value="userInfo.periodNumber" />
-      <van-cell title="栋" :value="userInfo.buildingNumber" />
-      <van-cell title="单元" :value="userInfo.unitNumber" />
-      <van-cell title="层" :value="userInfo.layerNumber" />
-      <van-cell title="户" :value="userInfo.householdNumber" />
+    <van-cell-group inset :title="$t('center.校园信息')">
+      <van-cell :title="$t('center.期')" :value="userInfo.periodNumber" />
+      <van-cell :title="$t('center.栋')" :value="userInfo.buildingNumber" />
+      <van-cell :title="$t('center.单元')" :value="userInfo.unitNumber" />
+      <van-cell :title="$t('center.层')" :value="userInfo.layerNumber" />
+      <van-cell :title="$t('center.户')" :value="userInfo.householdNumber" />
     </van-cell-group>
   </div>
 </template>
@@ -37,14 +37,6 @@ export default {
   data() {
     return {
       userInfo: {},
-      // isShow: false,
-      // address: {
-      //   periodNumber: '',
-      //   buildingNumber: '',
-      //   unitNumber: '',
-      //   layerNumber: '',
-      //   householdNumber: ''
-      // }
     };
   },
   components: {
@@ -56,21 +48,7 @@ export default {
       if (req.result.avatar === null || req.result.avatar.trim() === '') {
         this.userInfo.avatar = "/img/default/defaultHead.png"
       }
-
     });
-    // this.findInfoByUser();
-  },
-  methods: {
-    // findInfoByUser() {
-    //   findInfoByUserReq().then(res => {
-    //     if (res.data == null) {
-    //       this.isShow = false
-    //     } else {
-    //       this.isShow = true
-    //       this.address = res.data
-    //     }
-    //   })
-    // }
   },
 };
 </script>

@@ -1,40 +1,41 @@
 <template>
   <div style="width: 100%">
-    <NavTopBar title="信息修改" :leftArrow="true" :rightArrow="true" />
+    <!-- $('center.') -->
+    <NavTopBar :title="$t('center.信息修改')" :leftArrow="true" :rightArrow="true" />
     <van-form @submit="onSubmit">
-      <van-field name="uploader" label="头像上传">
+      <van-field name="uploader" :label="$t('center.头像上传')">
         <template #input>
           <van-uploader multiple :max-count="1" v-model="uploader" :max-size="500 * 512" @oversize="onOversize" :after-read="afterRead" />
         </template>
       </van-field>
-      <van-field name="登录名" label="登录名" placeholder="请输入登录名" readonly v-model="userInfo.username" :rules="[
+      <van-field name="登录名" :label="$t('center.登录名')" :placeholder="$t('center.请输入登录名')" readonly v-model="userInfo.username" :rules="[
           {
             pattern: uPattern,
             message: '登录名格式错误：4到8位（中文，字母，数字，下划线，减号）！',
           },
         ]" />
-      <van-field name="昵称" label="昵称" placeholder="请输入昵称" v-model="userInfo.nickName" :rules="[
+      <van-field name="昵称" :label="$t('center.昵称')" :placeholder="$t('center.请输入昵称')" v-model="userInfo.nickName" :rules="[
           {
             pattern: nPattern,
             message:
               '昵称格式不正确！(昵称格式：最长不得超过7个汉字，或14个字节(数字，字母))',
           },
         ]" />
-      <van-field name="真实姓名" label="真实姓名" placeholder="请输入真实姓名" v-model="userInfo.realName" :rules="[{ pattern: nPattern, message: '姓名格式不正确！' }]" />
-      <van-field name="radio" label="性别">
+      <van-field name="真实姓名" :label="$t('center.真实姓名')" :placeholder="$t('center.请输入真实姓名')" v-model="userInfo.realName" :rules="[{ pattern: nPattern, message: '姓名格式不正确！' }]" />
+      <van-field name="radio" :label="$t('center.性别')">
         <template #input>
           <van-radio-group v-model="userInfo.sex" direction="horizontal">
-            <van-radio :name="1">男</van-radio>
-            <van-radio :name="0">女</van-radio>
+            <van-radio :name="1">{{$t('center.男')}}</van-radio>
+            <van-radio :name="0">{{$t('center.女')}}</van-radio>
           </van-radio-group>
         </template>
       </van-field>
-      <van-field type="email" name="电子邮箱" label="电子邮箱" placeholder="请输入电子邮箱" v-model="userInfo.email" :rules="[{ pattern: ePattern, message: '电子邮箱格式不正确' }]" />
-      <van-field type="mobile" name="手机号码" label="手机号码" placeholder="请输入手机号码" v-model="userInfo.mobile" :rules="[{ pattern: mPattern, message: '手机号码格式不正确' }]" />
-      <van-field name="电话号码" label="电话号码" placeholder="请输入电话号码" v-model="userInfo.tel" :rules="[{ pattern: tPattern, message: '电话号码格式不正确' }]" />
-      <van-field name="家庭地址" label="家庭地址" placeholder="请输入家庭地址" v-model="userInfo.address" :rules="[{ required:true, message: '请输入家庭地址' }]" />
+      <van-field type="email" name="电子邮箱" :label="$t('center.电子邮箱')" :placeholder="$t('center.请输入电子邮箱')" v-model="userInfo.email" :rules="[{ pattern: ePattern, message: '电子邮箱格式不正确' }]" />
+      <van-field type="mobile" name="手机号码" :label="$t('center.手机号码')" :placeholder="$t('center.请输入手机号码')" v-model="userInfo.mobile" :rules="[{ pattern: mPattern, message: '手机号码格式不正确' }]" />
+      <van-field name="固定电话" :label="$t('center.固定电话')" :placeholder="$t('center.请输入固定电话')" v-model="userInfo.tel" :rules="[{ pattern: tPattern, message: '电话号码格式不正确' }]" />
+      <van-field name="家庭地址" :label="$t('center.家庭地址')" :placeholder="$t('center.请输入家庭地址')" v-model="userInfo.address" :rules="[{ required:true, message: '请输入家庭地址' }]" />
       <div style="margin: 16px">
-        <van-button round block type="info" native-type="submit">提交</van-button>
+        <van-button round block type="info" native-type="submit">{{ $t('btn.提交') }}</van-button>
       </div>
     </van-form>
   </div>

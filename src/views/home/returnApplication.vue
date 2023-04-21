@@ -1,30 +1,30 @@
 <template>
   <div style="width: 100%">
-    <nav-top-bar title="返校申请" :leftArrow="true" :rightArrow="true" />
+    <nav-top-bar :title="$t('home.返校申请')" :leftArrow="true" :rightArrow="true" />
 
     <van-form @submit="onSubmit">
-      <van-field name="学号" label="学号" readonly v-model="userInfo.schoolNumber" />
-      <van-field name="姓名" label="姓名" readonly v-model="userInfo.realName" />
-      <van-field name="班级" label="班级" readonly v-model="userInfo.class" />
-      <van-field name="temperature" label="体温">
+      <van-field name="学号" :label="$t('home.学号')" readonly v-model="userInfo.schoolNumber" />
+      <van-field name="姓名" :label="$t('home.姓名')" readonly v-model="userInfo.realName" />
+      <van-field name="班级" :label="$t('home.班级')" readonly v-model="userInfo.class" />
+      <van-field name="temperature" :label="$t('home.体温')">
         <template #input>
           <van-radio-group v-model="userInfo.temperature" direction="horizontal">
-            <van-radio name="down">37.3℃以下</van-radio>
-            <van-radio name="up">37.3℃以上</van-radio>
+            <van-radio name="down">37.3℃  {{$t('home.以下')}}</van-radio>
+            <van-radio name="up">37.3℃  {{$t('home.以上')}}</van-radio>
           </van-radio-group>
         </template>
       </van-field>
-      <van-field name="uploader" label="上传核酸结果">
+      <van-field name="uploader" :label="$t('home.核酸结果')">
         <template #input>
           <van-uploader v-model="userInfo.uploader" :after-read="afterRead"/>
         </template>
       </van-field>
-      <van-field name="返校方式" label="返校方式" placeholder="请输入返校方式" v-model="userInfo.returnReason" :rules="[{  required: true},]" />
-      <van-field name="行程轨迹" label="行程轨迹" placeholder="请输入行程轨迹" v-model="userInfo.track" :rules="[{ required: true, message: '请输入行程轨迹' }]" />
-      <van-field name="返校时间" label="返校时间" @click="show = true" placeholder="请输入返校时间" v-model="userInfo.returnTime" :rules="[{ required: true, message: '请选择返校时间' }]" />
+      <van-field name="返校方式" :label="$t('home.返校方式')" :placeholder="$t('home.请输入返校方式')" v-model="userInfo.returnReason" :rules="[{  required: true},]" />
+      <van-field name="行程轨迹" :label="$t('home.行程轨迹')" :placeholder="$t('home.请输入行程轨迹')" v-model="userInfo.track" :rules="[{ required: true, message: '请输入行程轨迹' }]" />
+      <van-field name="返校时间" :label="$t('home.返校时间')" @click="show = true" :placeholder="$t('home.请输入返校时间')" v-model="userInfo.returnTime" :rules="[{ required: true, message: '请选择返校时间' }]" />
       <van-calendar v-model="show" @confirm="onConfirm" />
       <div style="margin: 16px">
-        <van-button round :disabled="onSubmitDisabled" block type="info" native-type="submit">提交</van-button>
+        <van-button round :disabled="onSubmitDisabled" block type="info" native-type="submit">{{$t('btn.提交')}}</van-button>
       </div>
     </van-form>
   </div>

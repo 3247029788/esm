@@ -1,34 +1,34 @@
 <template>
   <div>
-    <nav-top-bar title="消息发布" :leftArrow="true" :rightArrow="true" />
+    <nav-top-bar :title="$t('home.消息发布')" :leftArrow="true" :rightArrow="true" />
     <van-form ref="form" @submit="submit">
       <van-cell-group>
-        <van-field required readonly v-model="recipients" label="收件人" placeholder="请选择用户" :rules="[{ required: true, message: '请选择用户' }]">
+        <van-field required readonly v-model="recipients" :label="$t('home.收件人')" :placeholder="$t('home.请选择用户')" :rules="[{ required: true, message: '请选择用户' }]">
           <template #button>
             <van-button native-type="button" icon="plus" size="small" type="primary" @click="show = true"/>
           </template>
         </van-field>
-        <van-field required v-model="theme" label="主题" placeholder="请输入主题" :rules="[{ required: true, message: '请输入主题' }]"/>
+        <van-field required v-model="theme" :label="$t('home.主题')" :placeholder="$t('home.请输入主题')" :rules="[{ required: true, message: '请输入主题' }]"/>
         <van-field 
           required
           v-model="text" 
-          label="正文" 
-          placeholder="请输入正文" 
+          :label="$t('home.正文')" 
+          :placeholder="$t('home.请输入正文')" 
           type="textarea"
           maxlength="150"
           show-word-limit
           :rules="[{ required: true, message: '请输入正文' }]"
         />
-        <van-button native-type="submit" round icon="envelop-o" type="info" style="width:90%;margin-left:5%;margin-top:15px">发送</van-button>
+        <van-button native-type="submit" round icon="envelop-o" type="info" style="width:90%;margin-left:5%;margin-top:15px">{{$t('btn.发送')}}</van-button>
       </van-cell-group>
     </van-form>
-    <van-dialog class="content" v-model="show" title="选择收件人" show-cancel-button @confirm="confirm">
-      <van-search v-model="keyword" placeholder="请输入搜索关键词" @search="search"/>
+    <van-dialog class="content" v-model="show" :title="$t('home.选择收件人')" show-cancel-button @confirm="confirm">
+      <van-search v-model="keyword" :placeholder="$t('center.请输入搜索关键词')" @search="search"/>
       <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
         <van-list
           v-model="loading"
           :finished="finished"
-          finished-text="没有更多了"
+          :finished-text="$t('center.没有更多了')"
           @load="onLoad"
         >
           <van-checkbox-group v-model="result" ref="checkboxGroup">
@@ -41,8 +41,8 @@
         </van-list>
       </van-pull-refresh>
       <div class="btn_outer">
-        <van-button class="btn" type="primary" size="small" @click="checkAll">全选</van-button>
-        <van-button class="btn" type="info" size="small" @click="toggleAll">反选</van-button>
+        <van-button class="btn" type="primary" size="small" @click="checkAll">{{$t('home.全选')}}</van-button>
+        <van-button class="btn" type="info" size="small" @click="toggleAll">{{$t('home.反选')}}</van-button>
       </div>
     </van-dialog>
   </div>

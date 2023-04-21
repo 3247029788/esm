@@ -7,27 +7,27 @@
         <van-col span="16">
           <ul>
             <li><strong>{{exceptionInfo.username}}</strong></li>
-            <li>异常类型：<span class="typeBox" :style="typeBoxStyle">{{exceptionTypeName}}</span></li>
-            <li>异常描述：</li>
+            <li>{{$t('home.异常类型')}}：<span class="typeBox" :style="typeBoxStyle">{{$t(`home.${exceptionTypeName}`)}}</span></li>
+            <li>{{$t('home.异常描述')}}：</li>
             <li><a href="#" @click="showDescription()" class="aStyle">{{simpleExceptionDescription}}</a></li>
           </ul>
         </van-col>
       </van-row>
       <template #right>
-        <van-button square type="primary" @click="updateStatus(exceptionInfo.id, 1)" class="cell-button" text="处理" />
-        <van-button square type="danger" @click="endExec()" class="cell-button" text="结束" />
+        <van-button square type="primary" @click="updateStatus(exceptionInfo.id, 1)" class="cell-button" :text="$t('home.处理')" />
+        <van-button square type="danger" @click="endExec()" class="cell-button" :text="$t('home.结束')" />
       </template>
     </van-swipe-cell>
-    <van-action-sheet style="min-height:50%" v-model="show" title="异常详情">
+    <van-action-sheet style="min-height:50%" v-model="show" :title="$t('home.异常详情')">
       <div class="content">
-        <p><strong>创建时间：</strong>{{createTime}}</p>
-        <p><strong>异常描述：</strong></p>
+        <p><strong>{{$t('home.创建时间')}}：</strong>{{createTime}}</p>
+        <p><strong>{{$t('home.异常描述')}}：</strong></p>
         <p style="text-indent:2em;">{{exceptionInfo.exceptionDescription}}</p>
       </div>
     </van-action-sheet>
 
-    <van-dialog v-model="showEndTab" title="处理结果" show-cancel-button :before-close="beforeClose" @confirm="confirm(exceptionInfo.id)">
-      <van-field v-model="result" rows="4" autosize label="处理结果" type="textarea" maxlength="150" placeholder="请输入结果" show-word-limit />
+    <van-dialog v-model="showEndTab" :title="$t('home.处理结果')" show-cancel-button :before-close="beforeClose" @confirm="confirm(exceptionInfo.id)">
+      <van-field v-model="result" rows="4" autosize :label="$t('home.处理结果')" type="textarea" maxlength="150" :placeholder="$t('home.请输入结果')" show-word-limit />
     </van-dialog>
   </div>
 </template>
@@ -105,7 +105,7 @@ export default {
         this.result = ''
         if (res.status === 0) {
           this.$toast.success("操作成功")
-          // this.$bus.$emit("changeList", id) //使用自定义事件传递数据
+          this.$emit("updateList") // 更新数据
         } else {
           this.$toast(res.message)
         }

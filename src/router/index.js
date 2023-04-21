@@ -25,9 +25,9 @@ const routes = [
         component: () => import('@/views/visualization')
       },
       {
-        path: '/b',
-        name: 'b',
-        component: () => import('@/views/b')
+        path: '/chat',
+        name: 'chat',
+        component: () => import('@/views/chat')
       },
       {
         path: '/center',
@@ -110,6 +110,11 @@ const routes = [
     name: 'approve',
     path: '/approve',
     component: () => import('@/views/home/approve'),
+  },
+  {
+    name: 'detail',
+    path: '/detail/:news',
+    component: () => import('@/views/chat/detail'),
   },
 ]
 

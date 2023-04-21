@@ -1,31 +1,31 @@
 <template>
   <div class="box infoBox">
     <van-swipe-cell class="box cellBox">
-      <van-cell title="姓名" :value="info.username" label="点击审批" @click="openDialog">
+      <van-cell :title="$t('home.姓名')" :value="info.username" :label="$t('home.点击审批')" @click="openDialog">
       </van-cell>
-      <template #right>
-        <van-button square type="primary" @click="updateStatus(info.id, 1)" class="cell-button" text="处理" />
-      </template>
+      <!-- <template #right>
+        <van-button square type="primary" class="cell-button" :text="$t('home.处理')" />
+      </template> -->
     </van-swipe-cell>
 
-    <van-dialog v-model="showEndTab" title="离校审批" show-cancel-button :before-close="beforeClose" @confirm="confirm(info.id)">
-      <van-field v-model="info.username" label="姓名" readonly/>
-      <van-field v-model="info.leaveReason" label="离校原因" readonly/>
-      <van-field v-model="info.track" label="行程" readonly/>
-      <van-field v-model="info.leaveTime" label="离校时间" readonly/>
-      <van-field v-model="createTime" label="申请时间" readonly/>
-      <van-field v-model="result" rows="4" autosize label="处理结果" type="textarea" maxlength="150" placeholder="请输入结果" show-word-limit />
+    <van-dialog v-model="showEndTab" :title="$t('home.离校审批')" show-cancel-button :before-close="beforeClose" @confirm="confirm(info.id)">
+      <van-field v-model="info.username" :label="$t('home.姓名')" readonly/>
+      <van-field v-model="info.leaveReason" :label="$t('home.离校原因')" readonly/>
+      <van-field v-model="info.track" :label="$t('home.行程')" readonly/>
+      <van-field v-model="info.leaveTime" :label="$t('home.离校时间')" readonly/>
+      <van-field v-model="createTime" :label="$t('home.申请时间')" readonly/>
+      <van-field v-model="result" rows="4" autosize :label="$t('home.处理结果')" type="textarea" maxlength="150" :placeholder="$t('home.请输入结果')" show-word-limit />
     </van-dialog>
 
-    <van-dialog v-model="show" title="返校审批" show-cancel-button :before-close="beforeClose" @confirm="confirm(info.id)">
-      <van-field v-model="info.username" label="姓名" readonly/>
-      <van-field v-model="info.returnReason" label="返校原因" readonly/>
-      <van-field v-model="temperature" label="体温" readonly/>
-      <van-field v-model="info.returnReason" label="核酸结果" readonly/>
-      <van-field v-model="info.track" label="行程" readonly/>
-      <van-field v-model="info.returnTime" label="返校时间" readonly/>
-      <van-field v-model="createTime" label="申请时间" readonly/>
-      <van-field v-model="result" rows="4" autosize label="处理结果" type="textarea" maxlength="150" placeholder="请输入结果" show-word-limit />
+    <van-dialog v-model="show" :title="$t('home.返校审批')" show-cancel-button :before-close="beforeClose" @confirm="confirm(info.id)">
+      <van-field v-model="info.username" :label="$t('home.姓名')" readonly/>
+      <van-field v-model="info.returnReason" :label="$t('home.返校原因')" readonly/>
+      <van-field v-model="temperature" :label="$t('home.体温')" readonly/>
+      <van-field v-model="info.returnReason" :label="$t('home.核酸结果')" readonly/>
+      <van-field v-model="info.track" :label="$t('home.行程')" readonly/>
+      <van-field v-model="info.returnTime" :label="$t('home.返校时间')" readonly/>
+      <van-field v-model="createTime" :label="$t('home.申请时间')" readonly/>
+      <van-field v-model="result" rows="4" autosize :label="$t('home.处理结果')" type="textarea" maxlength="150" :placeholder="$t('home.请输入结果')" show-word-limit />
     </van-dialog>
   </div>
 </template>

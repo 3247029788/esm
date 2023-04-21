@@ -1,41 +1,21 @@
 <template>
   <div style="width: 100%">
-    <nav-top-bar title="离校申请" :leftArrow="true" :rightArrow="true" />
+    <nav-top-bar :title="$t('home.离校申请')" :leftArrow="true" :rightArrow="true" />
 
     <van-form @submit="onSubmit">
-      <!-- <van-field name="健康码" label="健康码">
-        <template #input>
-          <img class="qrCodeImage" src="https://img1.baidu.com/it/u=3541757699,4240409497&fm=253&fmt=auto&app=120&f=JPEG?w=500&h=704" />
-        </template>
-      </van-field> -->
-      <!-- <van-field name="switch" label="进入或离开">
-        <template #input>
-          <van-switch v-model="switchCheckedInOrOut" size="20" style="margin-right: 10px" />
-          {{ switchInOrOutLable }}
-        </template>
-      </van-field> -->
-
-      <!-- <van-field name="switch" label="健康状况">
-        <template #input>
-          <van-switch v-model="switchCheckedIsHealth" size="20" :disabled="isHealthDisable" style="margin-right: 10px" />
-          {{ switchIsHealthLable }}
-        </template>
-      </van-field>
-
-      <van-field v-if="! switchCheckedIsHealth" v-model="communityInAndOut.abnormalBodyTemperature" name="异常体温" label="异常体温" placeholder="请输入异常体温" :rules="[{ required: true, message: '异常体温不能为空' }]" /> -->
-      <van-field name="学号" label="学号" readonly v-model="userInfo.schoolNumber" />
-      <van-field name="姓名" label="姓名" readonly v-model="userInfo.realName" />
-      <van-field name="班级" label="班级" readonly v-model="userInfo.class" />
-      <van-field name="离校原因" label="离校原因" placeholder="请输入离校原因" v-model="userInfo.leaveReason" :rules="[
+      <van-field name="学号" :label="$t('home.学号')" readonly v-model="userInfo.schoolNumber" />
+      <van-field name="姓名" :label="$t('home.姓名')" readonly v-model="userInfo.realName" />
+      <van-field name="班级" :label="$t('home.班级')" readonly v-model="userInfo.class" />
+      <van-field name="离校原因" :label="$t('home.离校原因')" :placeholder="$t('home.请输入离校原因')" v-model="userInfo.leaveReason" :rules="[
           {
             required: true,
           },
         ]" />
-      <van-field name="行程轨迹" label="行程轨迹" placeholder="请输入行程轨迹" v-model="userInfo.track" :rules="[{ required: true, message: '请输入行程轨迹' }]" />
-      <van-field name="离校时间" label="离校时间" @click="show = true" placeholder="请输入离校时间" v-model="userInfo.leaveTime" :rules="[{ required: true, message: '请选择离校时间' }]" />
+      <van-field name="行程轨迹" :label="$t('home.行程轨迹')" :placeholder="$t('home.请输入行程轨迹')" v-model="userInfo.track" :rules="[{ required: true, message: '请输入行程轨迹' }]" />
+      <van-field name="离校时间" :label="$t('home.离校时间')" @click="show = true" :placeholder="$t('home.请输入离校时间')" v-model="userInfo.leaveTime" :rules="[{ required: true, message: '请选择离校时间' }]" />
       <van-calendar v-model="show" @confirm="onConfirm" />
       <div style="margin: 16px">
-        <van-button round :disabled="onSubmitDisabled" block type="info" native-type="submit">提交</van-button>
+        <van-button round :disabled="onSubmitDisabled" block type="info" native-type="submit">{{$t('btn.提交')}}</van-button>
       </div>
     </van-form>
   </div>

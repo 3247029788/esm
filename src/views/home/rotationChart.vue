@@ -10,17 +10,18 @@
         </van-swipe>
         <van-notice-bar left-icon="volume-o" :scrollable="true">
             <van-swipe vertical class="notice-swipe" :autoplay="3500" :show-indicators="false">
-                <van-swipe-item v-for="(value, index) in notices" :key="index">{{value}}</van-swipe-item>
+                <van-swipe-item v-for="(value, index) in notices" :key="index">{{$t(`home.${value}`)}}</van-swipe-item>
             </van-swipe>
         </van-notice-bar>
-        <van-grid :column-num="3">
-            <van-grid-item v-for="item in list" :key="item.id" :icon="item.icon" :text="item.resourceName" :to="item.requestPath" />
+        <van-grid :column-num="2">
+            <van-grid-item v-for="item in purviewList" :key="item.id" :icon="item.icon" :text="$t(`home.${item.resourceName}`)" :to="item.requestPath" />
         </van-grid>
     </div>
 </template>
 
 <script>
 import { getHomeList } from '@/api/home'
+import { getUserinfo } from '@/api/test'
 
 export default {
     name: 'RotationChart',
@@ -30,10 +31,19 @@ export default {
             list: [],
             notices: ['欢迎来到校园疫情管理系统'],
             messageQuery: {
-            }
+            },
+            identity: '',
+        }
+    },
+    computed:{
+        purviewList(){
+            if(this.identity === '管理员'){
+                return this.list.filter(item => item.purview === 1)
+            }else return this.list.filter(item => item.purview === 0)
         }
     },
     mounted(){
+        getUserinfo().then(res => this.identity = res.result.identity)
         this.getHomeList()
     },
     methods:{

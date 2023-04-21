@@ -7,9 +7,9 @@ module.exports = {
   lintOnSave: false,
   devServer: {
       proxy: {
-          '/api': {
-              target: 'https://c.m.163.com',
-              pathRewrite:{'^/api':'/ug/api'},
+          '/socket.io': {
+              target: 'http://localhost:5500',
+              // pathRewrite:{'^/api':'/ug/api'},
               // ws: true, //用于支持websocket,默认值为true
               // changeOrigin: true //用于控制请求头中的host值,默认值为true
           },

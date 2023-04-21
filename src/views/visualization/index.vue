@@ -5,7 +5,7 @@
     <div class="info">
       <p class="title">
         <i></i>
-        病毒信息
+        {{ $t('visual.病毒信息') }}
       </p>
       <div class="content">
         <p>{{ Ncovinfo.note1 }}</p>

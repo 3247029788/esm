@@ -1,14 +1,14 @@
 <template>
   <div class="box">
-    <nav-top-bar :leftArrow="true" :rightArrow="true" title="校园消息" />
+    <nav-top-bar :leftArrow="true" :rightArrow="true" :title="$t('center.校园消息')" />
     <van-tabs v-model="active" class="box tabBox">
-      <van-tab title="未读" class="box">
+      <van-tab :title="$t('center.未读')" class="box">
         <template #title>
-          未读
+          {{ $t('center.未读') }}
           <van-badge :content="content" max="9"/>
         </template>
       </van-tab>
-      <van-tab title="已读">
+      <van-tab :title="$t('center.已读')">
       </van-tab>
       <list-group :active="active" @sendContent="sendContent"/>
     </van-tabs>

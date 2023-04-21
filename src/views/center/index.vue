@@ -2,7 +2,7 @@
   <div style="width: 100%; height:100%">
     <!-- 顶栏 Start -->
     <van-sticky :offset-top="0">
-      <van-nav-bar :title="navBar.title" :left-text="navBar.leftText" :leftArrow="navBar.leftArrow" @click-left="onClickLeft" @click-right="onClickRight">
+      <van-nav-bar :title="$t(`center.${navBar.title}`)" :left-text="navBar.leftText" :leftArrow="navBar.leftArrow" @click-left="onClickLeft" @click-right="onClickRight">
         <template #right>
           <van-icon :name="navBar.icon" size="18" />
         </template>
@@ -19,33 +19,37 @@
     <van-row type="flex" justify="center">
       <van-col span="6">
         <p class="text-center">
-          <strong>{{ userInfo.username == '' ? '暂无用户名' : userInfo.username }}</strong> <br />
-          <small><span class="text-secondary">{{ userInfo.identity }}</span></small>
+          <strong>{{ userInfo.username }}</strong> <br />
+          <small><span class="text-secondary"><van-tag type="primary">{{ userInfo.identity }}</van-tag></span></small>
         </p>
       </van-col>
     </van-row>
     </div>
     
 
-    <van-cell-group title="健康" style="background-color: #f5f5f5;">
-      <van-cell title="健康码" is-link to="healthCode" />
+    <van-cell-group :title="$t('center.健康')" style="background-color: #f5f5f5;">
+      <van-cell :title="$t('center.健康码')" is-link to="healthCode" />
     </van-cell-group>
 
-    <van-cell-group title="个人">
-      <van-cell title="个人详情" is-link to="userInfo" />
-      <van-cell title="信息修改" is-link to="updateUserInfo" />
-      <van-cell title="密码修改" is-link to="updatePassword" />
+    <van-cell-group :title="$t('center.个人')">
+      <van-cell :title="$t('center.个人详情')" is-link to="userInfo" />
+      <van-cell :title="$t('center.信息修改')" is-link to="updateUserInfo" />
+      <van-cell :title="$t('center.密码修改')" is-link to="updatePassword" />
     </van-cell-group>
 
-    <van-cell-group title="校园">
-      <van-cell title="校园消息" is-link to="messageList" />
-      <van-cell title="提交记录" is-link to="submitRecord" />
+    <van-cell-group :title="$t('center.校园')">
+      <van-cell :title="$t('center.校园消息')" is-link to="messageList">
+        <van-badge :content="content"/>
+      </van-cell>
+      <van-cell :title="$t('center.提交记录')" is-link to="submitRecord" />
     </van-cell-group>
   </div>
 </template>
 
 <script>
 import { getUserinfo } from '@/api/test'
+import { getMessage } from '@/api/home'
+
 export default {
   name: "Center",
   data() {
@@ -61,9 +65,14 @@ export default {
         identity: "",
         avatar: "",
       },
+      content: 0, // 未读消息数量
     };
   },
   mounted(){
+    getMessage().then(res => {
+      const data = res.result.filter(item => item.isRead !== 1)
+      this.content = data.length
+    })
     this.userInfo.avatar = require('@/assets/img/default/defaultHead.png');
   },
   created() {

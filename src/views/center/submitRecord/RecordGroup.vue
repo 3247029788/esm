@@ -1,7 +1,7 @@
 <template>
   <div class="box">
     <van-pull-refresh class="box" v-model="refreshing" @refresh="onRefresh">
-      <van-list v-model="loading" :immediate-check="true" :error.sync="error" :finished="finished" finished-text="没有更多了" error-text="请求失败，点击重新加载" @load="onLoad">
+      <van-list v-model="loading" :immediate-check="true" :error.sync="error" :finished="finished" :finished-text="$t('center.没有更多了')" error-text="请求失败，点击重新加载" @load="onLoad">
         <template v-if="active === 0">
           <record-item v-for="item in healthList" :key="item.id" :active="active" :recordInfo="item" />
         </template>

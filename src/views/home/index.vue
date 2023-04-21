@@ -1,12 +1,7 @@
 <template>
     <div>
       <van-nav-bar
-        title="首页"
-        left-text="返回"
-        right-text="退出"
-        left-arrow
-        @click-left="$router.go(-1)"
-        @click-right="$router.replace({name:'home'})"
+        :title="$t('home.首页')"
       />
       <rotattion-chart/>
     </div>

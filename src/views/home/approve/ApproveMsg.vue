@@ -4,7 +4,7 @@
       <van-search v-model="value" placeholder="请输入搜索关键词" @search="onSearch" />
     </form> -->
     <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
-      <van-list v-model="loading" :immediate-check="true" :error.sync="error" :finished="finished" finished-text="没有更多了" error-text="请求失败，点击重新加载" @load="onLoad">
+      <van-list v-model="loading" :immediate-check="true" :error.sync="error" :finished="finished" :finished-text="$t('center.没有更多了')" error-text="请求失败，点击重新加载" @load="onLoad">
         <div v-if="active ==0">
           <message @updateList="updateList" v-for="item in leaveList" :key="item.id" :info="item" :active="0"/>
         </div>

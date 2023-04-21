@@ -1,43 +1,43 @@
 <template>
     <div class="outer">
         <van-tabs class="tabs"  v-model="active" color="red" animated>
-            <van-tab title="全国疫情数据(含港澳台)" name="a">
+            <van-tab :title="$t(`visual.全国疫情数据(含港澳台)`)" name="a">
                 <van-grid :column-num="2" style="padding:0;">
                     <van-grid-item style="text-align: center;padding:0;">
                         <div class="cover_today_confirm">
-                            <h4>现有确诊</h4>
+                            <h4>{{ $t('visual.现有确诊') }}</h4>
                             <div class="number" style="color:red">9006774</div>
-                            <p class="added" style="display: block;">较昨日<span style="color:red">+24325</span></p>
+                            <p class="added" style="display: block;">{{ $t('visual.较昨日') }}<span style="color:red">+24325</span></p>
                         </div>
                     </van-grid-item>
                     <van-grid-item style="text-align: center;padding:0;">
                         <div class="cover_today_confirm">
-                            <h4>累计确诊</h4>
+                            <h4>{{ $t('visual.累计确诊') }}</h4>
                             <div class="number" style="color:#a31d13">9506895</div>
-                            <p class="added" style="display: block;">较昨日<span style="color:#a31d13">+46184</span></p>
+                            <p class="added" style="display: block;">{{ $t('visual.较昨日') }}<span style="color:#a31d13">+46184</span></p>
                         </div>
                     </van-grid-item>
                 </van-grid>
                 <van-grid :column-num="3" style="padding:0;">
                     <van-grid-item style="text-align: center;padding:0;">
                         <div class="cover_today_confirm">
-                            <h4>境外输入</h4>
+                            <h4>{{ $t('visual.境外输入') }}</h4>
                             <div class="number" style="color:#ffa352">28824</div>
-                            <p class="added" style="display: block;">较昨日<span style="color:#ffa352">+116</span></p>
+                            <p class="added" style="display: block;">{{ $t('visual.较昨日') }}<span style="color:#ffa352">+116</span></p>
                         </div>
                     </van-grid-item>
                     <van-grid-item style="text-align: center;padding:0;">
                         <div class="cover_today_confirm">
-                            <h4>累计死亡</h4>
+                            <h4>{{ $t('visual.累计死亡') }}</h4>
                             <div class="number" style="color:#333">31509</div>
-                            <p class="added" style="display: block;">较昨日<span style="color:#333">+78</span></p>
+                            <p class="added" style="display: block;">{{ $t('visual.较昨日') }}<span style="color:#333">+78</span></p>
                         </div>
                     </van-grid-item>
                     <van-grid-item style="text-align: center;padding:0;">
                         <div class="cover_today_confirm">
-                            <h4>累计治愈</h4>
+                            <h4>{{ $t('visual.累计治愈') }}</h4>
                             <div class="number" style="color:#34aa70">468612</div>
-                            <p class="added" style="display: block;">较昨日<span style="color:#34aa70">+5552</span></p>
+                            <p class="added" style="display: block;">{{ $t('visual.较昨日') }}<span style="color:#34aa70">+5552</span></p>
                         </div>
                     </van-grid-item>
                 </van-grid>
@@ -49,33 +49,33 @@
             <van-tab name="b">
                 <template slot="title">
                     <van-icon name="location-o" slot="left-icon"/>
-                    {{provinceNcov.province}}疫情数据
+                    {{provinceNcov.province}}{{ $t('visual.疫情数据') }}
                 </template>
                 <van-grid :column-num="3" style="padding:0;">
                     <van-grid-item style="text-align: center;padding:0;">
                         <div class="cover_today_confirm">
-                            <h4>累计确诊</h4>
+                            <h4>{{ $t('visual.累计确诊') }}</h4>
                             <div class="number" style="color:#a31d13">{{ provinceNcov.confirm }}</div>
-                            <p class="added" style="display: block;">较昨日<span style="color:#a31d13">+{{ provinceNcov.confirm_add }}</span></p>
+                            <p class="added" style="display: block;">{{ $t('visual.较昨日') }}<span style="color:#a31d13">+{{ provinceNcov.confirm_add }}</span></p>
                         </div>
                     </van-grid-item>
                     <van-grid-item style="text-align: center;padding:0;">
                         <div class="cover_today_confirm">
-                            <h4>累计死亡</h4>
+                            <h4>{{ $t('visual.累计死亡') }}</h4>
                             <div class="number" style="color:#333">{{provinceNcov.dead}}</div>
-                            <p class="added" style="display: block;">较昨日<span style="color:#333">+{{provinceNcov.dead_add}}</span></p>
+                            <p class="added" style="display: block;">{{ $t('visual.较昨日') }}<span style="color:#333">+{{provinceNcov.dead_add}}</span></p>
                         </div>
                     </van-grid-item>
                     <van-grid-item style="text-align: center;padding:0;">
                         <div class="cover_today_confirm">
-                            <h4>累计治愈</h4>
+                            <h4>{{ $t('visual.累计治愈') }}</h4>
                             <div class="number" style="color:#34aa70">{{ provinceNcov.heal }}</div>
-                            <p class="added" style="display: block;">较昨日<span style="color:#34aa70">+{{provinceNcov.heal_add}}</span></p>
+                            <p class="added" style="display: block;">{{ $t('visual.较昨日') }}<span style="color:#34aa70">+{{provinceNcov.heal_add}}</span></p>
                         </div>
                     </van-grid-item>
                 </van-grid>
                 <span class="introduce">
-                    截至2022-12-28 00:00
+                    {{$t('visual.截止')}} 2022-12-28 00:00
                 </span>
                 <van-button class="zj_btn" block size="small" round @click="showPopup">
                     <van-icon name="location-o" />
@@ -83,7 +83,7 @@
                     <van-icon name="arrow-down" />
                 </van-button>
                 <van-popup v-model="show" position="bottom" :style="{ height: '50%' }" get-container="body">
-                    <van-area title="请选择地区" :area-list="areaProvince" value="code" @cancel="cancel" @confirm="confirm"/>
+                    <van-area :title="$t('visual.请选择地区')" :area-list="areaProvince" value="code" @cancel="cancel" @confirm="confirm"/>
                 </van-popup>
             </van-tab>
         </van-tabs>

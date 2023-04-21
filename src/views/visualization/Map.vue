@@ -2,13 +2,13 @@
   <div class="map_outer">
     <p class="title">
         <i></i>
-        疫情地图
+        {{ $t('visual.疫情地图') }}
       </p>
     <div id="map" v-show="showNowMap"></div>
     <div id="mapAll" v-show="!showNowMap"></div>
     <div class="btn">
-        <button @click="now" :style="style_now">现有确诊</button>
-        <button @click="all" :style="style">累计确诊</button>
+        <button @click="now" :style="style_now">{{ $t('visual.现有确诊') }}</button>
+        <button @click="all" :style="style">{{ $t('visual.累计确诊') }}</button>
     </div>
     <div id="line_map"></div>
   </div>

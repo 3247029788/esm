@@ -7,32 +7,32 @@
         <van-col span="16">
           <ul>
             <li><strong>{{exceptionInfo.userName}}</strong> {{exceptionInfo.userMobile}}</li>
-            <li>异常类型：<span class="typeBox" :style="typeBoxStyle">{{exceptionTypeName}}</span></li>
-            <li>异常描述：</li>
+            <li>{{$t('home.异常类型')}}：<span class="typeBox" :style="typeBoxStyle">{{$t(`home.${exceptionTypeName}`)}}</span></li>
+            <li>{{$t('home.异常描述')}}：</li>
             <li><a href="#" @click="showDescription()" class="aStyle">{{simpleExceptionDescription}}</a></li>
           </ul>
         </van-col>
       </van-row>
       <template #right>
-        <van-button square type="primary" class="cell-button" @click="showInfoTable" text="结果" />
+        <van-button square type="primary" class="cell-button" @click="showInfoTable" :text="$t('home.结果')" />
       </template>
     </van-swipe-cell>
-    <van-action-sheet style="min-height:50%" v-model="show" title="异常详情">
+    <van-action-sheet style="min-height:50%" v-model="show" :title="$t('home.异常详情')">
       <div class="content_info">
-        <p><strong>创建时间：</strong>{{createTime}}</p>
-        <p><strong>异常描述：</strong></p>
+        <p><strong>{{$t('home.创建时间')}}：</strong>{{createTime}}</p>
+        <p><strong>{{$t('home.异常描述')}}：</strong></p>
         <p style="text-indent:2em;">{{exceptionInfo.exceptionDescription}}</p>
       </div>
     </van-action-sheet>
-    <van-dialog class="content" v-model="showEndTab" title="处理详情">
+    <van-dialog class="content" v-model="showEndTab" :title="$t('home.处理详情')">
       <van-cell-group style="height:300px; overflow:auto">
-        <van-field label="用户名" :value="resultMsg.username" readonly />
-        <van-field label="联系电话" :value="resultMsg.userMobile" readonly />
-        <van-field label="上报时间" :value="createTime" readonly />
-        <van-field label="解决时间" :value="resultTime" readonly />
-        <van-field label="处理人" :value="resultMsg.resultUser" readonly />
-        <van-field label="处理人联系方式" :value="resultMsg.resultMobile" readonly />
-        <van-field label="处理结果" type="textarea" autosize maxlength="150" :value="resultMsg.result" readonly />
+        <van-field :label="$t('home.用户名')" :value="resultMsg.username" readonly />
+        <van-field :label="$t('home.联系电话')" :value="resultMsg.userMobile" readonly />
+        <van-field :label="$t('home.上报时间')" :value="createTime" readonly />
+        <van-field :label="$t('home.解决时间')" :value="resultTime" readonly />
+        <van-field :label="$t('home.处理人')" :value="resultMsg.resultUser" readonly />
+        <van-field :label="$t('home.处理人联系方式')" :value="resultMsg.resultMobile" readonly />
+        <van-field :label="$t('home.处理结果')" type="textarea" autosize maxlength="150" :value="resultMsg.result" readonly />
       </van-cell-group>
     </van-dialog>
   </div>
@@ -73,7 +73,7 @@ export default {
       return dayjs(this.resultMsg.resultTime).format('YYYY-MM-DD HH:mm:ss')
     },
     exceptionTypeName() {
-      return this.exceptionInfo.exceptionType == 0 ? '体温异常' : '其它异常'
+      return this.exceptionInfo.exceptionType == 0 ? '体温异常' : '其他异常'
     },
     typeBoxStyle() {
       let infoStyel = {

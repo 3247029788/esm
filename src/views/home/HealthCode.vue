@@ -1,15 +1,15 @@
 <template>
     <div style="width:100%" class="qrBox">
-        <NavTopBar title="个人健康码" :leftArrow="true" :rightArrow="true" />
+        <NavTopBar :title="$t('home.个人健康码')" :leftArrow="true" :rightArrow="true" />
 
         <van-row type="flex" justify="center">
             <van-col span="22" class="userInfoBox ">
                 <van-row type="flex" justify="center" class="infoBox">
                     <van-col span="8">
-                        <van-icon name="manager" size="20" color="#1989fa" /> 姓名
+                        <van-icon name="manager" size="20" color="#1989fa" /> {{$t('home.姓名')}}
                     </van-col>
                     <van-col span="16">
-                        <van-icon name="phone-circle" size="20" color="#1989fa" /> 联系方式
+                        <van-icon name="phone-circle" size="20" color="#1989fa" /> {{$t('home.联系方式')}}
                     </van-col>
                     <van-col span="8">
                         {{codeInfo.username}}
@@ -34,13 +34,13 @@
             <van-col span="22">
                 <van-row type="flex" justify="space-between">
                     <van-col span="11" class="userInfoBox" :style="dayBoxStyle">
-                        <strong>健康打卡天数：</strong>
-                        <p>{{day}} 天</p>
+                        <strong>{{$t('home.健康打卡天数')}}：</strong>
+                        <p>{{day}} {{$t('home.天')}}</p>
                     </van-col>
                     <van-col span="11" class="userInfoBox">
-                        <strong>健康码类型：</strong>
+                        <strong>{{$t('home.健康码类型')}}：</strong>
                         <p>
-                        {{codeInfo.codeTypeName}}
+                        {{$t(`home.${codeInfo.codeTypeName}`)}}
                         <van-icon :name="icon" size="18" :color="iconColor" /> <br>
                         </p>
                     </van-col>

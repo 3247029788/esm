@@ -1,19 +1,19 @@
 <template>
   <div class="box">
-    <nav-top-bar title="异常上报" :leftArrow="true" :rightArrow="true" />
+    <nav-top-bar :title="$t('home.异常上报')" :leftArrow="true" :rightArrow="true" />
     <van-form @submit="onSubmit">
-      <van-field name="radio" label="异常类型">
+      <van-field name="radio" :label="$t('home.异常类型')">
         <template #input>
           <van-radio-group v-model="exceptionType" direction="horizontal">
-            <van-radio :name="0">体温异常</van-radio>
-            <van-radio :name="1">其他异常</van-radio>
+            <van-radio :name="0">{{$t('home.体温异常')}}</van-radio>
+            <van-radio :name="1">{{$t('home.其他异常')}}</van-radio>
           </van-radio-group>
         </template>
       </van-field>
-      <van-field v-if="isShow" v-model="abnormalTemperature" name="异常体温" label="异常体温" placeholder="请输入异常体温" :rules="[{ required: true, message: '请输入异常体温' }]" />
-      <van-field v-model="exceptionDescription" rows="2" autosize label="异常描述" type="textarea" maxlength="150" placeholder="请输入描述信息" show-word-limit />
+      <van-field v-if="isShow" v-model="abnormalTemperature" name="异常体温" :label="$t('home.异常体温')" :placeholder="$t('home.请输入异常体温')" :rules="[{ required: true, message: '请输入异常体温' }]" />
+      <van-field v-model="exceptionDescription" rows="2" autosize :label="$t('home.异常描述')" type="textarea" maxlength="150" :placeholder="$t('home.请输入描述信息')" show-word-limit />
       <div style="margin: 16px;">
-        <van-button :disabled="disabled" round block type="info" native-type="submit">提交</van-button>
+        <van-button :disabled="disabled" round block type="info" native-type="submit">{{ $t('btn.提交') }}</van-button>
       </div>
     </van-form>
 

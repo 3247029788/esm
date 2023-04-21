@@ -1,22 +1,22 @@
 <template>
   <div style="width: 100%">
-    <NavTopBar  title="密码修改" :leftArrow="true" :rightArrow="true"/>
+    <NavTopBar  :title="$t('center.密码修改')" :leftArrow="true" :rightArrow="true"/>
       <van-form validate-first @failed="onFailed" @submit="onSubmit">
         <!-- 通过 pattern 进行正则校验 -->
         <van-field
           v-model="oldPassword"
           type="password"
           name="pattern"
-          label="原始密码"
-          placeholder="请输入原始密码"
+          :label="$t('center.原始密码')"
+          :placeholder="$t('center.请输入原始密码')"
         />
         <!-- 通过 pattern 进行正则校验 -->
         <van-field
           v-model="newPassword"
           type="password"
           name="pattern"
-          label="新密码"
-          placeholder="请输入新密码"
+          :label="$t('center.新密码')"
+          :placeholder="$t('center.请输入新密码')"
           :rules="[
             { pattern, message: '请输入6~8位包含大小写字母数字特殊字符！' },
           ]"
@@ -26,12 +26,12 @@
           v-model="repeatPassword"
           type="password"
           name="validator"
-          label="重复新密码"
-          placeholder="请重复输入新密码"
+          :label="$t('center.重复新密码')"
+          :placeholder="$t('center.请重复输入新密码')"
           :rules="[{ validator, message: '两次输入的密码不一致！' }]"
         />
         <div style="margin: 16px">
-          <van-button round block type="info" native-type="submit">提交</van-button>
+          <van-button round block type="info" native-type="submit">{{ $t('btn.提交') }}</van-button>
         </div>
       </van-form>
   </div>

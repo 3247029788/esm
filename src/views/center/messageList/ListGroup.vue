@@ -1,10 +1,10 @@
 <template>
   <div class="box">
     <form action="/">
-      <van-search v-model="query.theme" placeholder="请输入搜索关键词"/>
+      <van-search v-model="query.theme" :placeholder="$t('center.请输入搜索关键词')"/>
     </form>
     <van-pull-refresh class="box" v-model="refreshing" @refresh="onRefresh">
-      <van-list v-model="loading" :immediate-check="true" :error.sync="error" :finished="finished" finished-text="没有更多了" error-text="请求失败，点击重新加载" @load="onLoad">
+      <van-list v-model="loading" :immediate-check="true" :error.sync="error" :finished="finished" :finished-text="$t('center.没有更多了')" error-text="请求失败，点击重新加载" @load="onLoad">
         <template v-if="active === 0">
           <message-item @showInfo="showInfo" v-for="item in noRead" :key="item.id" :active="active" :messageInfo="item" />
         </template>
@@ -125,6 +125,7 @@ export default {
           if (res.result.length > 0) {
             res.result.forEach(value => this.list.push(value))
             this.$emit('sendContent', this.noRead.length)
+            this.$store.commit('center/setNoRead',this.noRead.length)
           }
         } else {
           this.$toast(res.message)

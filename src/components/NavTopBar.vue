@@ -1,7 +1,7 @@
 <template>
   <!-- 顶部导航栏 -->
   <van-sticky :offset-top="0">
-    <van-nav-bar :title="title" :left-text="leftText" :left-arrow="leftArrow" @click-left="onClickLeft" @click-right="onClickRight" fixed placeholder>
+    <van-nav-bar :title="title" :left-text="$t(`chat.${leftText}`)" :left-arrow="leftArrow" @click-left="onClickLeft" @click-right="onClickRight" fixed placeholder>
       <template #right v-if="rightArrow">
         <van-icon name="wap-home-o" size="18" />
       </template>

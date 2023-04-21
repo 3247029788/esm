@@ -1,24 +1,24 @@
 <template>
   <div class="box">
     <form action="/">
-      <van-search v-model="query.userName" placeholder="请输入搜索关键词" @search="onSearch" />
+      <van-search v-model="query.userName" :placeholder="$t('center.请输入搜索关键词')" @search="onSearch" />
     </form>
-    <van-field name="radio" label="异常类型">
+    <van-field name="radio" :label="$t('home.异常类型')">
       <template #input>
         <van-radio-group v-model="query.exceptionType" direction="horizontal">
-          <van-radio shape="square" name="">全部</van-radio>
-          <van-radio shape="square" name="0">体温</van-radio>
-          <van-radio shape="square" name="1">其他</van-radio>
+          <van-radio shape="square" name="">{{$t('home.全部')}}</van-radio>
+          <van-radio shape="square" name="0">{{$t('home.体温')}}</van-radio>
+          <van-radio shape="square" name="1">{{$t('home.其他')}}</van-radio>
         </van-radio-group>
       </template>
     </van-field>
     <van-pull-refresh class="box" v-model="refreshing" @refresh="onRefresh">
-      <van-list v-model="loading" :immediate-check="true" :error.sync="error" :finished="finished" finished-text="没有更多了" error-text="请求失败，点击重新加载" @load="onLoad">
+      <van-list v-model="loading" :immediate-check="true" :error.sync="error" :finished="finished" :finished-text="$t('center.没有更多了')" error-text="请求失败，点击重新加载" @load="onLoad">
         <div v-if="active ==0" class="box">
-          <not-started v-for="item in listNS" :key="item.id" :exceptionInfo="item" />
+          <not-started @updateList="onRefresh" v-for="item in listNS" :key="item.id" :exceptionInfo="item" />
         </div>
         <div v-if="active ==1" class="box">
-          <on-going v-for="item in listOG" :key="item.id" :exceptionInfo="item" />
+          <on-going @updateList="onRefresh" v-for="item in listOG" :key="item.id" :exceptionInfo="item" />
         </div>
         <div v-if="active ==2" class="box">
           <end v-for="item in listED" :key="item.id" :exceptionInfo="item" />

@@ -1,35 +1,35 @@
 <template>
   <div style="width: 100%">
-    <nav-top-bar title="健康打卡" :leftArrow="true" :rightArrow="true" />
+    <nav-top-bar :title="$t('home.健康打卡')" :leftArrow="true" :rightArrow="true" />
 
     <van-form ref="form" :model="clockin" :rules="rules" @failed="onFailed">
-      <van-field name="temperature" label="体温">
+      <van-field name="temperature" :label="$t('home.体温')">
         <template #input>
           <van-radio-group v-model="clockin.temperature" direction="horizontal">
-            <van-radio name="down">37.3℃以下</van-radio>
-            <van-radio name="up">37.3℃以上</van-radio>
+            <van-radio name="down">37.3℃  {{$t('home.以下')}}</van-radio>
+            <van-radio name="up">37.3℃  {{$t('home.以上')}}</van-radio>
           </van-radio-group>
         </template>
       </van-field>
-      <van-field name="address" label="登记地点">
+      <van-field name="address" :label="$t('home.登记地点')">
         <template #input>
           <button class="addressBtn" @click="show = true">
             <van-icon name="location-o"/>
           </button>
           {{ clockin.address }}
-          <span style="color:#c8c9cc" v-if="!clockin.address">请选择当前登记地点</span>
+          <span style="color:#c8c9cc" v-if="!clockin.address">{{$t('home.请选择当前登记地点')}}</span>
           <van-popup v-model="show" position="bottom" :style="{ height: '50%' }" get-container="body">
-            <van-area title="请选择地区" :area-list="areaList" value="address" @cancel="show = false" @confirm="confirm"/>
+            <van-area title="$t('home.请选择地区')" :area-list="areaList" value="address" @cancel="show = false" @confirm="confirm"/>
           </van-popup>
         </template>
       </van-field>
-      <van-field name="switch" label="进入高风险区">
+      <van-field name="switch" :label="$t('home.进入高风险区')">
         <template #input>
-          <van-switch v-model="switchCheckedIsToHighRisk" size="20" style="margin-left:10px" /> <span style="color:#c8c9cc">14天内到访高风险地区</span>
+          <van-switch v-model="switchCheckedIsToHighRisk" size="20" style="margin-left:10px" /> <span style="color:#c8c9cc">{{$t('home.14天内到访高风险地区')}}</span>
         </template>
       </van-field>
 
-      <van-field v-if="switchCheckedIsToHighRisk" name="高风险地区" label="高风险地区">
+      <van-field v-if="switchCheckedIsToHighRisk" name="高风险地区" :label="$t('home.高风险地区')">
         <template #input>
           <button class="addressBtn" @click="highShow = true">
             <van-icon name="location-o"/>
@@ -41,15 +41,15 @@
           </van-popup>
         </template>
       </van-field>
-      <van-field name="uploader" label="上传疫苗接种凭证">
+      <van-field name="uploader" :label="$t('home.上传疫苗接种凭证')">
         <template #input>
           <van-uploader v-model="clockin.uploader" :after-read="afterRead"/>
         </template>
       </van-field>
-      <van-field disabled v-model="clockin.continuous" name="健康打卡天数" label="健康打卡天数" />
-      <van-field disabled v-model="clockin.createTime" name="打卡时间" label="打卡时间" />
+      <van-field disabled v-model="clockin.continuous" name="健康打卡天数" :label="$t('home.健康打卡天数')" />
+      <van-field disabled v-model="clockin.createTime" name="打卡时间" :label="$t('home.打卡时间')" />
       <div style="margin: 16px">
-        <van-button round :disabled="onSubmitDisabled" block type="info" @click="onSubmit">提交</van-button>
+        <van-button round :disabled="onSubmitDisabled" block type="info" @click="onSubmit">{{$t('btn.提交')}}</van-button>
       </div>
     </van-form>
   </div>

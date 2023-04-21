@@ -1,12 +1,12 @@
 <template>
     <div class="container">
-        <NavTopBar title="用户管理" :leftArrow="true" :rightArrow="true" />
+        <NavTopBar :title="$t('home.用户管理')" :leftArrow="true" :rightArrow="true" />
         <van-cell-group>
-            <van-cell v-for="(student, index) in showStudents" :key="index" title="用户名" :value="student.username" @click="showStudentDetail(student)">
+            <van-cell v-for="(student, index) in showStudents" :key="index" :title="$t('home.用户名')" :value="student.username" @click="showStudentDetail(student)">
                 <template #label>
-                    <div>姓名：{{ student.realName || '无' }}</div>
-                    <div>班级：{{ student.class || '无'}}</div>
-                    <div>学号：{{ student.schoolNumber || '无'}}</div>
+                    <div>{{$t('home.姓名')}} ：{{ student.realName || $t('home.无') }}</div>
+                    <div>{{$t('home.班级')}} ：{{ student.class || $t('home.无') }}</div>
+                    <div>{{$t('home.学号')}} ：{{ student.schoolNumber || $t('home.无') }}</div>
                 </template>
             </van-cell>
         </van-cell-group>
@@ -21,15 +21,15 @@
                 <template #page="{ text }">{{ text }}</template>
             </van-pagination>
         </div>
-        <van-dialog v-model="showStudentDialog" title="修改学生信息" show-cancel-button @confirm="confirm">
-            <van-field v-model="currentStudent.realName" label="姓名" placeholder="请输入姓名"/>
-            <van-field v-model="currentStudent.class" label="班级" placeholder="请输入班级"/>
-            <van-field v-model="currentStudent.schoolNumber" label="学号" placeholder="请输入学号"/>
-            <van-field v-model="currentStudent.periodNumber" label="期" placeholder="请输入期" type="number"/>
-            <van-field v-model="currentStudent.buildingNumber" label="栋" placeholder="请输入栋" type="number"/>
-            <van-field v-model="currentStudent.unitNumber" label="单元" placeholder="请输入单元" type="number"/>
-            <van-field v-model="currentStudent.layerNumber" label="层" placeholder="请输入层" type="number"/>
-            <van-field v-model="currentStudent.householdNumber" label="户" placeholder="请输入户" type="number"/>
+        <van-dialog v-model="showStudentDialog" :title="$t('home.修改学生信息')" show-cancel-button @confirm="confirm">
+            <van-field v-model="currentStudent.realName" :label="$t('home.姓名')" :placeholder="$t('home.请输入姓名')"/>
+            <van-field v-model="currentStudent.class" :label="$t('home.班级')" :placeholder="$t('home.请输入班级')"/>
+            <van-field v-model="currentStudent.schoolNumber" :label="$t('home.学号')" :placeholder="$t('home.请输入学号')"/>
+            <van-field v-model="currentStudent.periodNumber" :label="$t('center.期')" :placeholder="$t('home.请输入期')" type="number"/>
+            <van-field v-model="currentStudent.buildingNumber" :label="$t('center.栋')" :placeholder="$t('home.请输入栋')" type="number"/>
+            <van-field v-model="currentStudent.unitNumber" :label="$t('center.单元')" :placeholder="$t('home.请输入单元')" type="number"/>
+            <van-field v-model="currentStudent.layerNumber" :label="$t('center.层')" :placeholder="$t('home.请输入层')" type="number"/>
+            <van-field v-model="currentStudent.householdNumber" :label="$t('center.户')" :placeholder="$t('home.请输入户')" type="number"/>
         </van-dialog>
     </div>
 </template>

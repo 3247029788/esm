@@ -81,7 +81,7 @@ export const getAllUserInfo = (params) => {
   })
 }
 
-// 获取所有用户信息
+// 管理员更新用户信息
 export const updateVIPUserInfo = (data) => {
   return axios.request({
     url: 'my/updateVIPUserInfo',
@@ -90,7 +90,7 @@ export const updateVIPUserInfo = (data) => {
   })
 }
 
-// 获取所有用户信息
+// 获取离校申请信息
 export const getLeaveInfo = (params) => {
   return axios.request({
     url: 'my/getLeaveInfo',
@@ -99,10 +99,19 @@ export const getLeaveInfo = (params) => {
   })
 }
 
-// 获取所有用户信息
+// 获取返校申请信息
 export const getReturnInfo = (params) => {
   return axios.request({
     url: 'my/getReturnInfo',
+    method: 'GET',
+    params
+  })
+}
+
+// 获取新闻
+export const getNews = (params) => {
+  return axios.request({
+    url: 'my/getNews',
     method: 'GET',
     params
   })
