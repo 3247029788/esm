@@ -51,9 +51,9 @@ export default {
   },
   methods: {
     /**模拟清理缓存 */
-    cache(){
-      this.$toast.success("清理成功")
-    },
+    // cache(){
+    //   this.$toast.success("清理成功")
+    // },
     /**显示关于我弹出窗口 */
     isShow(){
       this.show = !this.show

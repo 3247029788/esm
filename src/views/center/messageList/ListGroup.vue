@@ -65,12 +65,12 @@ export default {
     //     this.findMessage() // 查询列表
     //   }
     // },
-    active: {
-      immediate: true,
-      handler(newValue, oldVale) {
-        this.query.isEnable = newValue
-      }
-    }
+    // active: {
+    //   immediate: true,
+    //   handler(newValue, oldVale) {
+    //     this.query.isEnable = newValue
+    //   }
+    // }
   },
   computed: {
     // 日期格式转换

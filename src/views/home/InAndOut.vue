@@ -3,9 +3,9 @@
     <nav-top-bar :title="$t('home.离校申请')" :leftArrow="true" :rightArrow="true" />
 
     <van-form @submit="onSubmit">
-      <van-field name="学号" :label="$t('home.学号')" readonly v-model="userInfo.schoolNumber" />
+      <van-field name="学号" :label="$t('home.学号')" readonly v-model="userInfo.schoolNumber || '无'" />
       <van-field name="姓名" :label="$t('home.姓名')" readonly v-model="userInfo.realName" />
-      <van-field name="班级" :label="$t('home.班级')" readonly v-model="userInfo.class" />
+      <van-field name="班级" :label="$t('home.班级')" readonly v-model="userInfo.class || '无'" />
       <van-field name="离校原因" :label="$t('home.离校原因')" :placeholder="$t('home.请输入离校原因')" v-model="userInfo.leaveReason" :rules="[
           {
             required: true,

@@ -123,8 +123,6 @@ export default {
       const res = await reguser({ username: this.username, password: this.password })
       if (res.status === 0) {
         this.$toast.success({ message: '注册成功！' })
-        // this.$store.commit('userToken/setToken', res.token)
-        // this.$router.push({ path: '/home' })
       } else {
         this.$toast.fail(res.message)
       }

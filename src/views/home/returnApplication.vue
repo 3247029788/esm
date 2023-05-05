@@ -3,9 +3,9 @@
     <nav-top-bar :title="$t('home.返校申请')" :leftArrow="true" :rightArrow="true" />
 
     <van-form @submit="onSubmit">
-      <van-field name="学号" :label="$t('home.学号')" readonly v-model="userInfo.schoolNumber" />
+      <van-field name="学号" :label="$t('home.学号')" readonly v-model="userInfo.schoolNumber || '无'" />
       <van-field name="姓名" :label="$t('home.姓名')" readonly v-model="userInfo.realName" />
-      <van-field name="班级" :label="$t('home.班级')" readonly v-model="userInfo.class" />
+      <van-field name="班级" :label="$t('home.班级')" readonly v-model="userInfo.class || '无'" />
       <van-field name="temperature" :label="$t('home.体温')">
         <template #input>
           <van-radio-group v-model="userInfo.temperature" direction="horizontal">

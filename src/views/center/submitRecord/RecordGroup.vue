@@ -44,7 +44,7 @@ export default {
     query: {
       deep: true, // 深度监视
       immediate: false, //初始化时让handler调用一下
-      handler(newValue, oldVale) { //handler什么时候调用？当isHot发生改变时。
+      handler(newValue, oldVale) {
         this.healthList.splice(0, this.healthList.length)
         this.abnormalList.splice(0, this.abnormalList.length)
         this.trFindList() // 查询列表

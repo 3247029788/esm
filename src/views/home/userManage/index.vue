@@ -25,11 +25,11 @@
             <van-field v-model="currentStudent.realName" :label="$t('home.姓名')" :placeholder="$t('home.请输入姓名')"/>
             <van-field v-model="currentStudent.class" :label="$t('home.班级')" :placeholder="$t('home.请输入班级')"/>
             <van-field v-model="currentStudent.schoolNumber" :label="$t('home.学号')" :placeholder="$t('home.请输入学号')"/>
-            <van-field v-model="currentStudent.periodNumber" :label="$t('center.期')" :placeholder="$t('home.请输入期')" type="number"/>
-            <van-field v-model="currentStudent.buildingNumber" :label="$t('center.栋')" :placeholder="$t('home.请输入栋')" type="number"/>
-            <van-field v-model="currentStudent.unitNumber" :label="$t('center.单元')" :placeholder="$t('home.请输入单元')" type="number"/>
-            <van-field v-model="currentStudent.layerNumber" :label="$t('center.层')" :placeholder="$t('home.请输入层')" type="number"/>
-            <van-field v-model="currentStudent.householdNumber" :label="$t('center.户')" :placeholder="$t('home.请输入户')" type="number"/>
+            <van-field v-model="currentStudent.periodNumber" input-type="number" :label="$t('center.期')" :placeholder="$t('home.请输入期')" type="number"/>
+            <van-field v-model.number="currentStudent.buildingNumber" :label="$t('center.栋')" :placeholder="$t('home.请输入栋')" type="number"/>
+            <van-field v-model.number="currentStudent.unitNumber" :label="$t('center.单元')" :placeholder="$t('home.请输入单元')" type="number"/>
+            <van-field v-model.number="currentStudent.layerNumber" :label="$t('center.层')" :placeholder="$t('home.请输入层')" type="number"/>
+            <van-field v-model.number="currentStudent.householdNumber" :label="$t('center.户')" :placeholder="$t('home.请输入户')" type="number"/>
         </van-dialog>
     </div>
 </template>
@@ -47,7 +47,8 @@ export default {
             currentPage: 1,
             students: [],
             showStudents: [],
-            currentStudent: {},
+            currentStudent: {
+            },
             showStudentDialog: false,
             total: 1,
         }
@@ -70,19 +71,11 @@ export default {
         },
         confirm(){
             const data = {
-                id: this.currentStudent.id,
-                realName: this.currentStudent.realName,
-                class: this.currentStudent.class,
-                schoolNumber: this.currentStudent.schoolNumber,
-                periodNumber: this.currentStudent.periodNumber,
-                buildingNumber: this.currentStudent.buildingNumber,
-                unitNumber: this.currentStudent.unitNumber,
-                layerNumber: this.currentStudent.layerNumber,
-                householdNumber: this.currentStudent.householdNumber,
+                ...this.currentStudent
             }
             updateVIPUserInfo(data).then(res => {
                 if(res.status === 0) this.$toast.success('修改成功！')
-                else this.$toast.error(res.message)
+                else this.$toast.fail(res.message)
             })
         },
     },

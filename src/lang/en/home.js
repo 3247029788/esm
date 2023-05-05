@@ -90,6 +90,8 @@ const home = {
     '返校方式' : 'return type',
     '请输入返校方式' : 'enter return type',
     '请输入返校时间' : 'enter return time',
+    '请选择地区' : 'select area',
+    '高风险地区' : 'high-risk areas',
 }
 
 export default home

@@ -19,7 +19,7 @@
           {{ clockin.address }}
           <span style="color:#c8c9cc" v-if="!clockin.address">{{$t('home.请选择当前登记地点')}}</span>
           <van-popup v-model="show" position="bottom" :style="{ height: '50%' }" get-container="body">
-            <van-area title="$t('home.请选择地区')" :area-list="areaList" value="address" @cancel="show = false" @confirm="confirm"/>
+            <van-area :title="$t('home.请选择地区')" :area-list="areaList" value="address" @cancel="show = false" @confirm="confirm"/>
           </van-popup>
         </template>
       </van-field>

@@ -64,7 +64,6 @@ export default {
   // 发给服务器的信息
   methods: {
     toDetail(item, index){
-      console.log(item,index)
       this.$router.push({name:'detail',params:{news:item}})
     },
 
